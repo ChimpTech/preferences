@@ -14,7 +14,8 @@ Gem::Specification.new do |s|
   s.test_files        = `git ls-files -- test/*`.split("\n")
   s.rdoc_options      = %w(--line-numbers --inline-source --title preferences --main README.rdoc)
   s.extra_rdoc_files  = %w(README.rdoc CHANGELOG.rdoc LICENSE)
-  
+
+  s.add_runtime_dependency 'rails', '~> 4.2', '>= 4.2.0'
   s.add_development_dependency("rake")
   s.add_development_dependency("plugin_test_helper", ">= 0.3.2")
 end
