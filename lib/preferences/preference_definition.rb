@@ -36,14 +36,18 @@ module Preferences
 
     # Determines whether column backing this preference stores numberic values
     def number?
-      @column.number?
+      [
+        :decimal,
+        :float,
+        :integer
+      ].include?(@column.type)
     end
 
     # Typecasts the value based on the type of preference that was defined.
     # This uses ActiveRecord's typecast functionality so the same rules for
     # typecasting a model's columns apply here.
     def type_cast(value)
-      @type == :any ? value : @column.type_cast_from_database(value)
+      @type == :any ? value : column_type_class.new.cast(value)
     end
 
     def column_type_class
